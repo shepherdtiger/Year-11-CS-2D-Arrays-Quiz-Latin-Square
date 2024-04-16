@@ -1,4 +1,6 @@
 public class LatinSquare {
+    public static int targetCheckSum1(int N) {
+
 
     /**
      *
@@ -8,7 +10,7 @@ public class LatinSquare {
      */
     public static int targetCheckSum1(int rowSize) {
         int sum=0;
-        return sum;
+        return (N * (N + 1)) / 2;
     }
 
     /**
@@ -18,9 +20,15 @@ public class LatinSquare {
      *         calculate and return the product of consecutive integers 1 * 2 * ... * N
      */
     public static int targetCheckSum2(int rowSize) {
-        int prod=1;
-        return prod;
+
+        int product = 1;
+        for (int i = 1; i <= N; i++) {
+            product *= i;
+        }
+        return product;
     }
+
+        }
 
 
     /**
@@ -32,7 +40,19 @@ public class LatinSquare {
      *         AND that every row's product in array2d is equal to checkSum2
      */
     public static boolean isLatinRows(int[][] array2d, int checkSum1, int checkSum2) {
-        return false;
+        int N = array2d.length;
+        for (int[] row : array2d) {
+            int rowSum = 0;
+            int rowProduct = 1;
+            for (int num : row) {
+                rowSum += num;
+                rowProduct *= num;
+            }
+            if (rowSum != checkSum1 || rowProduct != checkSum2) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -44,7 +64,19 @@ public class LatinSquare {
      *         AND that every column's product in array2d is equal to checkSum2
      */
     public static boolean isLatinColumns(int[][] array2d, int checkSum1, int checkSum2) {
-        return false;
+        int N = array2d.length;
+        for (int i = 0; i < N; i++) {
+            int colSum = 0;
+            int colProduct = 1;
+            for (int j = 0; j < N; j++) {
+                colSum += array2d[j][i];
+                colProduct *= array2d[j][i];
+            }
+            if (colSum != checkSum1 || colProduct != checkSum2) {
+                return false;
+            }
+        }
+        return true;
     }
 
 
@@ -55,8 +87,12 @@ public class LatinSquare {
      *         Hint: make use of isLatinRows and isLatinColumns
      */
     public static boolean isLatinSquare(int[][] array2d) {
-        return false;
+        int N = array2d.length;
+        int checkSum1 = targetCheckSum1(N);
+        int checkSum2 = targetCheckSum2(N);
+        return isLatinRows(array2d, checkSum1, checkSum2) && isLatinColumns(array2d, checkSum1, checkSum2);
     }
+
 
     /** OPTIONAL (only do if you have time)
      *

@@ -1,5 +1,5 @@
 public class LatinSquare {
-    public static int targetCheckSum1(int N) {
+
 
 
     /**
@@ -10,7 +10,7 @@ public class LatinSquare {
      */
     public static int targetCheckSum1(int rowSize) {
         int sum=0;
-        return (N * (N + 1)) / 2;
+        return (rowSize * (rowSize + 1)) / 2;
     }
 
     /**
@@ -20,15 +20,12 @@ public class LatinSquare {
      *         calculate and return the product of consecutive integers 1 * 2 * ... * N
      */
     public static int targetCheckSum2(int rowSize) {
-
         int product = 1;
-        for (int i = 1; i <= N; i++) {
+        for (int i = 1; i <= rowSize; i++) {
             product *= i;
         }
         return product;
     }
-
-        }
 
 
     /**
